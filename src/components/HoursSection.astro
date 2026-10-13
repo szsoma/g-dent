@@ -1,0 +1,70 @@
+---
+interface OpeningHour {
+  day: string;
+  time: string;
+}
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  phoneLabel: string;
+  phoneHref: string;
+  hours: OpeningHour[];
+  addressNote: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  intro,
+  phoneLabel,
+  phoneHref,
+  hours,
+  addressNote,
+}: Props = Astro.props;
+---
+
+<section id="nyitvatartas" class="bg-surface py-16 md:py-20">
+  <div class="container-page">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow text-terracotta">{eyebrow}</p>
+        <h2 class="mt-4 font-display text-h2 leading-tight">{heading}</h2>
+        <p class="mt-5 max-w-md text-body text-muted">{intro}</p>
+        <a
+          href={phoneHref}
+          class="mt-8 inline-flex items-center gap-2 rounded-xs border border-ink/25 px-6 py-3.5 text-body text-primary transition-all duration-300 ease-[var(--ease-soft)] hover:border-primary hover:bg-primary hover:text-on-primary"
+        >
+          <svg viewBox="0 0 24 24" fill="none" class="size-4" aria-hidden="true">
+            <path
+              d="M6.6 3.5h2.3l1.6 4-2 1.4a11 11 0 0 0 5.6 5.6l1.4-2 4 1.6v2.3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linejoin="round"></path>
+          </svg>
+          {phoneLabel}
+        </a>
+      </div>
+
+      <div
+        class="reveal self-start bg-canvas p-8 shadow-lift md:p-10"
+        style="--reveal-delay: 120ms"
+      >
+        <dl>
+          {
+            hours.map((entry) => (
+              <div class="flex items-baseline justify-between gap-4 border-b border-ink/15 py-4 last:border-0">
+                <dt class="text-body">{entry.day}</dt>
+                <dd class="font-display text-[1.25rem] text-primary tabular-nums">{entry.time}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <p class="mt-6 border-t border-ink/15 pt-6 text-caption text-muted">
+          {addressNote}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

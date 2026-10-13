@@ -1,0 +1,30 @@
+---
+interface Props {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  funds: string[];
+}
+
+const { eyebrow, heading, intro, funds }: Props = Astro.props;
+---
+
+<section id="penztarak" class="bg-canvas py-16 md:py-20">
+  <div class="container-page">
+    <div class="reveal max-w-2xl">
+      <p class="eyebrow text-terracotta">{eyebrow}</p>
+      <h2 class="mt-4 font-display text-h2 leading-tight">{heading}</h2>
+      <p class="mt-5 text-body text-muted">{intro}</p>
+    </div>
+
+    <ul class="reveal mt-10 flex flex-wrap gap-2.5" style="--reveal-delay: 100ms">
+      {
+        funds.map((fund) => (
+          <li class="rounded-full border border-ink/15 bg-surface px-5 py-2.5 text-[0.9375rem] text-ink transition-colors duration-300 hover:border-primary/40 hover:text-primary">
+            {fund}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

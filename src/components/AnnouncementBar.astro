@@ -1,0 +1,20 @@
+---
+interface Props {
+  visible: boolean;
+  text: string;
+}
+
+const { visible, text }: Props = Astro.props;
+---
+
+{
+  visible && (
+    <div
+      class="bg-indigo text-on-primary"
+      data-announcement-bar
+      role="status"
+    >
+      <p class="container-page py-2.5 text-center text-caption">{text}</p>
+    </div>
+  )
+}

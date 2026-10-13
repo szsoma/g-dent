@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+
+@source "../**/*.astro";
+
+@theme {
+  /* Palette — warm botanical neutrals, deep plum brand accent
+     (adapted from the Buddle design system, primary recast to plum) */
+  --color-canvas: #fbf8f5;
+  --color-surface: #f4ede6;
+  --color-raised: #eee7e0;
+  --color-ink: #524b4b;
+  --color-muted: #8d8887;
+  --color-hairline: #000000;
+  --color-primary: #3f1d5e;
+  --color-primary-deep: #33174b;
+  --color-primary-soft: #f1ebf4;
+  --color-on-primary: #fbf8f5;
+
+  /* Decorative accents only — no functional roles */
+  --color-sage: #133e36;
+  --color-terracotta: #7a4a0a;
+  --color-indigo: #3c3489;
+
+  --font-display:
+    'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:
+    'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+
+  /* Typographic scale, measured on the reference site */
+  --text-hero: 3rem;
+  --text-hero--line-height: 1.08;
+  --text-hero--font-weight: 300;
+  --text-h2: 2.125rem;
+  --text-h2--line-height: 1.2;
+  --text-h2--font-weight: 300;
+  --text-h3: 1.56rem;
+  --text-h3--line-height: 1.33;
+  --text-h3--font-weight: 300;
+  --text-h3--letter-spacing: -0.02em;
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.4;
+  --text-lead--font-weight: 400;
+  --text-body: 1rem;
+  --text-body--line-height: 1.5;
+  --text-body--font-weight: 400;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.38;
+  --text-caption--font-weight: 400;
+  --text-caption--letter-spacing: 0.06em;
+
+  /* Radii: cards/images sharp, interactive 8px, badges pill */
+  --radius-xs: 8px;
+
+  --shadow-lift: rgba(0, 0, 0, 0.1) 0 4px 6px -1px, rgba(0, 0, 0, 0.1) 0 2px 4px -2px;
+  --shadow-pill: rgba(0, 0, 0, 0.08) 0 10px 15px -3px, rgba(0, 0, 0, 0.08) 0 4px 6px -4px;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Soft warm hairline used for cards and dividers */
+@utility hairline {
+  border: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+/* Eyebrow label — uppercase caption with tracking */
+@utility eyebrow {
+  font-size: var(--text-caption);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 1376px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Editorial serif accents */
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+/* Scroll reveal — staggered page-load and section entry.
+   Hidden only when JS is active, so no-JS still shows all content. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-soft),
+    transform 0.7s var(--ease-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

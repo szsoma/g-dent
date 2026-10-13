@@ -1,0 +1,35 @@
+---
+interface Props {
+  text: string;
+  tagline: string;
+  tone?: 'ink' | 'onPrimary';
+}
+
+const { text, tagline, tone = 'ink' } = Astro.props;
+---
+
+<a
+  href="#top"
+  class:list={[
+    'group inline-flex items-baseline gap-2.5',
+    tone === 'onPrimary' ? 'text-on-primary' : 'text-primary',
+  ]}
+  aria-label={`${text} ${tagline} — vissza a lap tetejére`}
+>
+  <span
+    class:list={[
+      'font-display text-[1.75rem] leading-none font-medium italic tracking-tight',
+      'transition-opacity duration-300 group-hover:opacity-75',
+    ]}
+  >
+    {text}
+  </span>
+  <span
+    class:list={[
+      'eyebrow hidden text-[0.75rem] leading-tight sm:block',
+      tone === 'onPrimary' ? 'text-on-primary/80' : 'text-muted',
+    ]}
+  >
+    {tagline}
+  </span>
+</a>

@@ -1,0 +1,226 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - status [ref=e3]:
+      - paragraph [ref=e4]: "Karácsonyi nyitvatartás: december 24-én zárva."
+    - generic [ref=e5]:
+      - link "G-Dent fogorvosi magánrendelő — vissza a lap tetejére" [ref=e6] [cursor=pointer]:
+        - /url: "#top"
+        - generic [ref=e7]: G-Dent
+        - generic [ref=e8]: fogorvosi magánrendelő
+      - navigation "Főmenü" [ref=e9]:
+        - link "Szolgáltatásaink" [ref=e10] [cursor=pointer]:
+          - /url: "#szolgaltatasok"
+        - link "Nyitvatartás" [ref=e11] [cursor=pointer]:
+          - /url: "#nyitvatartas"
+        - link "Pénztárak" [ref=e12] [cursor=pointer]:
+          - /url: "#penztarak"
+        - link "Kapcsolat" [ref=e13] [cursor=pointer]:
+          - /url: "#kapcsolat"
+      - link "06/30-945-2470" [ref=e15] [cursor=pointer]:
+        - /url: tel:+36309452470
+  - main [ref=e18]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - paragraph [ref=e23]: Tiszaújváros · Tompa Mihály út 30.
+        - heading [level=1] [ref=e25]:
+          - text: Fájdalommentes fogászat
+          - emphasis [ref=e26]: családi hangulatban
+          - text: .
+        - paragraph [ref=e27]: Kellemes környezet, tapasztalt szakorvosok és magas szintű ellátás várják kedves betegeinket — a diagnosztikától a fogpótlásig egy kézben.
+        - generic [ref=e28]:
+          - link "Időpontot foglalok" [ref=e29] [cursor=pointer]:
+            - /url: tel:+36309452470
+          - link "Szolgáltatásaink →" [ref=e32] [cursor=pointer]:
+            - /url: "#szolgaltatasok"
+            - text: Szolgáltatásaink
+            - generic [ref=e33]: →
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - term [ref=e36]: Bejelentkezés
+            - definition [ref=e37]:
+              - link "06/30-945-2470" [ref=e38] [cursor=pointer]:
+                - /url: tel:+36309452470
+          - generic [ref=e39]:
+            - term [ref=e40]: Email
+            - definition [ref=e41]:
+              - link "gdent@t-email.hu" [ref=e42] [cursor=pointer]:
+                - /url: mailto:gdent@t-email.hu
+          - generic [ref=e43]:
+            - term [ref=e44]: Panoráma röntgen
+            - definition [ref=e45]: Helyben, Tiszaújvárosban
+      - generic [ref=e46]:
+        - img "G-Dent fogorvosi rendelő várószobája Tiszaújvárosban" [ref=e48]
+        - figure "A rendelő második várója" [ref=e49]:
+          - img "A rendelő várótermének második része ülőkkel" [ref=e50]
+        - paragraph [ref=e52]: Dr. Rózsa Ildikó · fog- és szájbetegségek szakorvosa
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - paragraph [ref=e57]: Nyitvatartás
+        - heading "Mikor várjuk Önt?" [level=2] [ref=e58]
+        - paragraph [ref=e59]: Bejelentkezést kérjük telefonon, így a várakozás minimalizálható — részesülhet pácienseink teljes figyelméből.
+        - link "06/30-945-2470" [ref=e60] [cursor=pointer]:
+          - /url: tel:+36309452470
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - term [ref=e66]: Hétfő
+            - definition [ref=e67]: 13.00 – 19.00
+          - generic [ref=e68]:
+            - term [ref=e69]: Kedd
+            - definition [ref=e70]: 10.00 – 16.00
+          - generic [ref=e71]:
+            - term [ref=e72]: Szerda
+            - definition [ref=e73]: 13.00 – 19.00
+          - generic [ref=e74]:
+            - term [ref=e75]: Csütörtök
+            - definition [ref=e76]: 08.00 – 14.00
+          - generic [ref=e77]:
+            - term [ref=e78]: Péntek
+            - definition [ref=e79]: 08.00 – 14.00
+        - paragraph [ref=e80]: "Rendelőnk: 3580 Tiszaújváros, Tompa Mihály út 30."
+    - generic [ref=e82]:
+      - generic [ref=e83]:
+        - paragraph [ref=e84]: Szolgáltatásaink
+        - heading "Minden, amire egy család fogászatában szüksége van" [level=2] [ref=e85]
+        - paragraph [ref=e86]: A megelőzéstől a bonyolultabb fogpótlásokig mindent egy helyen intézhet.
+      - list [ref=e87]:
+        - listitem [ref=e88]:
+          - generic [ref=e89]: "01"
+          - heading "Vizsgálat és higiénia" [level=3] [ref=e90]
+          - list [ref=e91]:
+            - listitem [ref=e92]: Állapotfelmérés
+            - listitem [ref=e94]: Szájhigiénés tanácsadás
+            - listitem [ref=e96]: Ultrahangos fogkő eltávolítás
+            - listitem [ref=e98]: Tasak kezelés
+            - listitem [ref=e100]: Ózon terápia
+        - listitem [ref=e102]:
+          - generic [ref=e103]: "02"
+          - heading "Képi diagnosztika" [level=3] [ref=e104]
+          - list [ref=e105]:
+            - listitem [ref=e106]: Panoráma röntgen (csak Tiszaújvárosban)
+            - listitem [ref=e108]: Intraorális RTG készítés
+          - paragraph [ref=e110]: A felvétel a rendelőben készül — nem kell másik intézménybe utaznia.
+        - listitem [ref=e111]:
+          - generic [ref=e112]: "03"
+          - heading "Tömések és gyökérkezelés" [level=3] [ref=e113]
+          - list [ref=e114]:
+            - listitem [ref=e115]: Esztétikus tömés készítése
+            - listitem [ref=e117]: Inlay, onlay
+            - listitem [ref=e119]: Gyökérkezelés
+            - listitem [ref=e121]: Elektrokautéres kezelések
+        - listitem [ref=e123]:
+          - generic [ref=e124]: "04"
+          - heading "Fogpótlások és beültetés" [level=3] [ref=e125]
+          - list [ref=e126]:
+            - listitem [ref=e127]: Kivehető és rögzített fogpótlások
+            - listitem [ref=e129]: Fém-, kerámia- és cirkón koronák, hidak, csapok
+            - listitem [ref=e131]: Fogbeültetés
+        - listitem [ref=e133]:
+          - generic [ref=e134]: "05"
+          - heading "Fogászat és esztétika" [level=3] [ref=e135]
+          - list [ref=e136]:
+            - listitem [ref=e137]: Fogfehérítés
+            - listitem [ref=e139]: Fogékszerek készítése
+        - listitem [ref=e141]:
+          - generic [ref=e142]: "06"
+          - heading "Gyermekfogászat" [level=3] [ref=e143]
+          - list [ref=e144]:
+            - listitem [ref=e145]: Teljes körű gyermekfogászati ellátás
+          - paragraph [ref=e147]: A kicsiknek is korukhoz és temperamentumukhoz igazodó, türelemmel végzett kezelést kínálunk.
+    - generic [ref=e150]:
+      - figure "A rendelő kezelőszobája — kényelmes, letisztult környezetben várjuk pácienseinket." [ref=e151]:
+        - img "G-Dent kezelőszoba fogászati egységgel Tiszaújvárosban" [ref=e152]
+      - generic [ref=e154]:
+        - paragraph [ref=e155]: Orvosaink
+        - heading "Egy szakorvos, aki ismeri betegeit" [level=2] [ref=e156]
+        - article [ref=e158]:
+          - heading "Dr. Rózsa Ildikó" [level=3] [ref=e159]
+          - paragraph [ref=e160]: Fog- és szájbetegségek szakorvosa
+          - paragraph [ref=e161]: "A magánrendelő alapellátója: a szájhigiénés megelőzéstől a gyökérkezelésen és fogpótlásokon át a gyermekfogászatig vállalja betegeinek teljes körű ellátását."
+          - list [ref=e162]:
+            - listitem [ref=e163]: Panoráma röntgen
+            - listitem [ref=e164]: Fogpótlások
+            - listitem [ref=e165]: Gyermekfogászat
+          - paragraph [ref=e166]:
+            - link "06/30/945-24-70" [ref=e167] [cursor=pointer]:
+              - /url: tel:+36309452470
+            - link "gdent@t-email.hu" [ref=e170] [cursor=pointer]:
+              - /url: mailto:gdent@t-email.hu
+    - generic [ref=e172]:
+      - generic [ref=e173]:
+        - paragraph [ref=e174]: Egészségpénztárak
+        - heading "Pénztáraink — kényelmes kiváltás" [level=2] [ref=e175]
+        - paragraph [ref=e176]: Szerződéses pénztárainkkal közvetlenül elszámolhatunk. Igény esetén a rendelő más egészségpénztárral is köt szerződést.
+      - list [ref=e177]:
+        - listitem [ref=e178]: NAVOSZ
+        - listitem [ref=e179]: Aranykor
+        - listitem [ref=e180]: Patika
+        - listitem [ref=e181]: Vasutas
+        - listitem [ref=e182]: AXA
+        - listitem [ref=e183]: MKB
+        - listitem [ref=e184]: TEMPO
+        - listitem [ref=e185]: OTP
+        - listitem [ref=e186]: DIMENZI
+        - listitem [ref=e187]: PRO VITA
+        - listitem [ref=e188]: GENERALI
+        - listitem [ref=e189]: MEDICINA
+        - listitem [ref=e190]: Allianz
+        - listitem [ref=e191]: K&H
+        - listitem [ref=e192]: Vitamin
+    - generic [ref=e195]:
+      - generic [ref=e196]:
+        - paragraph [ref=e197]: Kapcsolat
+        - heading "Foglaljon időpontot Tiszaújvárosban" [level=2] [ref=e198]
+        - paragraph [ref=e199]: Hívjon minket bizalommal a megadett rendelési időben, vagy írjon emailt — mindkét esetben mihamarabb visszajelzünk.
+        - generic [ref=e200]:
+          - link "06/30-945-2470" [ref=e201] [cursor=pointer]:
+            - /url: tel:+36309452470
+          - link "gdent@t-email.hu" [ref=e204] [cursor=pointer]:
+            - /url: mailto:gdent@t-email.hu
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - term [ref=e207]: Cím
+            - definition [ref=e208]: 3580 Tiszaújváros, Tompa Mihály út 30.
+          - generic [ref=e209]:
+            - term [ref=e210]: Rendelési idő
+            - definition [ref=e211]: Hétfő–Péntek08.00 – 19.00
+      - figure "A rendelő bejárata a Tompa Mihály utcában." [ref=e212]:
+        - img "A G-Dent rendelő bejárata a Tompa Mihály út 30. alatt" [ref=e213]
+    - generic [ref=e216]:
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - link "G-Dent fogorvosi magánrendelő — vissza a lap tetejére" [ref=e219] [cursor=pointer]:
+            - /url: "#top"
+            - generic [ref=e220]: G-Dent
+            - generic [ref=e221]: fogorvosi magánrendelő
+          - paragraph [ref=e222]: G-Dent Kft · fogorvosi magánrendelő Tiszaújvárosban. Családi hangulat, kellemes környezet, fájdalommentes kezelés.
+        - generic [ref=e223]:
+          - paragraph [ref=e224]: Oldaltérkép
+          - list [ref=e225]:
+            - listitem [ref=e226]:
+              - link "Szolgáltatásaink" [ref=e227] [cursor=pointer]:
+                - /url: "#szolgaltatasok"
+            - listitem [ref=e228]:
+              - link "Nyitvatartás" [ref=e229] [cursor=pointer]:
+                - /url: "#nyitvatartas"
+            - listitem [ref=e230]:
+              - link "Pénztárak" [ref=e231] [cursor=pointer]:
+                - /url: "#penztarak"
+            - listitem [ref=e232]:
+              - link "Kapcsolat" [ref=e233] [cursor=pointer]:
+                - /url: "#kapcsolat"
+        - generic [ref=e234]:
+          - paragraph [ref=e235]: Elérhetőség
+          - list [ref=e236]:
+            - listitem [ref=e237]:
+              - link "06/30-945-2470" [ref=e238] [cursor=pointer]:
+                - /url: tel:+36309452470
+            - listitem [ref=e239]:
+              - link "gdent@t-email.hu" [ref=e240] [cursor=pointer]:
+                - /url: mailto:gdent@t-email.hu
+            - listitem [ref=e241]:
+              - link "3580 Tiszaújváros, Tompa Mihály út 30." [ref=e242] [cursor=pointer]:
+                - /url: "#kapcsolat"
+      - generic [ref=e243]:
+        - paragraph [ref=e244]: © 2026 G-Dent Kft · Minden jog fenntartva.
+        - paragraph [ref=e245]: 3580 Tiszaújváros, Tompa Mihály út 30. · 06/30-945-2470

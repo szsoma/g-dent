@@ -1,0 +1,151 @@
+---
+import Wordmark from './Wordmark.astro';
+import AnnouncementBar from './AnnouncementBar.astro';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Announcement {
+  visible: boolean;
+  text: string;
+}
+
+interface Props {
+  text: string;
+  tagline: string;
+  navItems: NavItem[];
+  phoneLabel: string;
+  phoneHref: string;
+  menuAriaLabel: string;
+  menuCtaSuffix: string;
+  announcement: Announcement;
+}
+
+const {
+  text,
+  tagline,
+  navItems,
+  phoneLabel,
+  phoneHref,
+  menuAriaLabel,
+  menuCtaSuffix,
+  announcement,
+}: Props = Astro.props;
+---
+
+<header
+  id="top"
+  class="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-canvas/85 backdrop-blur-md"
+  data-site-header
+>
+  <AnnouncementBar visible={announcement.visible} text={announcement.text} />
+
+  <div class="container-page flex h-[71px] items-center justify-between gap-4">
+    <Wordmark {text} {tagline} />
+
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Főmenü">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="group relative text-[0.9375rem] text-ink transition-colors duration-300 hover:text-primary"
+          >
+            {item.label}
+            <span class="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all duration-300 ease-[var(--ease-soft)] group-hover:w-full" />
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={phoneHref}
+        class="hidden items-center gap-2 rounded-xs bg-primary px-4 py-2.5 text-[0.9375rem] text-on-primary transition-colors duration-300 hover:bg-primary/80 lg:inline-flex"
+      >
+        <svg viewBox="0 0 24 24" fill="none" class="size-4" aria-hidden="true">
+          <path
+            d="M6.6 3.5h2.3l1.6 4-2 1.4a11 11 0 0 0 5.6 5.6l1.4-2 4 1.6v2.3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linejoin="round"></path>
+        </svg>
+        {phoneLabel}
+      </a>
+
+      <button
+        type="button"
+        class="grid size-10 place-items-center rounded-full bg-canvas/90 text-ink shadow-lift transition-transform duration-300 hover:scale-105 lg:hidden"
+        aria-label={menuAriaLabel}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <span class="relative block h-3 w-5" data-menu-icon>
+          <span class="absolute inset-x-0 top-0 h-px bg-current transition-transform duration-300"></span>
+          <span class="absolute inset-x-0 top-1/2 h-px bg-current transition-transform duration-300"></span>
+          <span class="absolute inset-x-0 bottom-0 h-px bg-current transition-transform duration-300"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-ink/10 bg-canvas lg:hidden"
+    data-menu-panel
+  >
+    <nav class="container-page flex flex-col gap-1 py-4" aria-label="Mobilmenü">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-xs px-3 py-3 text-[1.0625rem] text-ink transition-colors duration-300 hover:bg-surface hover:text-primary"
+            data-menu-link
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={phoneHref}
+        class="mt-2 inline-flex items-center justify-center gap-2 rounded-xs bg-primary px-4 py-3.5 text-[1rem] text-on-primary"
+      >
+        {phoneLabel} — {menuCtaSuffix}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-site-header]');
+  const toggle = header?.querySelector('[data-menu-toggle]');
+  const panel = header?.querySelector('[data-menu-panel]');
+  const icon = toggle?.querySelector('[data-menu-icon]');
+  const bars = icon ? Array.from(icon.children) : [];
+
+  const setOpen = (open: boolean) => {
+    if (!panel || !toggle) return;
+    panel.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute(
+      'aria-label',
+      open ? 'Menü bezárása' : 'Menü megnyitása',
+    );
+    if (bars.length === 3) {
+      const [top, mid, bottom] = bars as HTMLElement[];
+      top.style.transform = open ? 'translateY(6px) rotate(45deg)' : '';
+      mid.style.transform = open ? 'scaleX(0)' : '';
+      bottom.style.transform = open ? 'translateY(-6px) rotate(-45deg)' : '';
+    }
+  };
+
+  toggle?.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  panel?.querySelectorAll('[data-menu-link]').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+</script>

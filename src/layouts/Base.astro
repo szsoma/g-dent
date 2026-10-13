@@ -1,0 +1,160 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+import { site, team } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Set false on pages that should not appear in search results. */
+  indexable?: boolean;
+  /** Set on pages whose social preview should use a different image. */
+  ogImage?: string;
+}
+
+const { title, description, indexable = true, ogImage = '/og.jpg' } = Astro.props;
+
+// Every page supplies a description; the fallback is the homepage copy so a new
+// page can never ship with an empty <meta name="description">.
+const pageDescription =
+  description ??
+  'G-Dent fogorvosi magánrendelő Tiszaújvárosban, a Tompa Mihály út 30. alatt. Fájdalommentes kezelés, családi hangulat, magas szintű ellátás.';
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+
+// Sourced from the `hours` collection so the structured data cannot drift
+// from the rendered opening hours.
+const hourEntries = (await getCollection('hours'))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order);
+
+// Hungarian day names as they appear in the `hours` entries.
+const dayCodes: Record<string, string> = {
+  Hétfő: 'Mo',
+  Kedd: 'Tu',
+  Szerda: 'We',
+  Csütörtök: 'Th',
+  Péntek: 'Fr',
+  Szombat: 'Sa',
+  Vasárnap: 'Su',
+};
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  '@id': `${canonical.href}#practice`,
+  name: `${site.name} ${site.tagline}`,
+  alternateName: 'G-Dent',
+  description: pageDescription,
+  url: canonical.href,
+  telephone: site.phoneHref.replace('tel:', ''),
+  email: site.email,
+  image: ogImageUrl.href,
+  priceRange: '$$',
+  currenciesAccepted: 'HUF',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Tompa Mihály út 30.',
+    addressLocality: 'Tiszaújváros',
+    postalCode: '3580',
+    addressCountry: 'HU',
+  },
+  openingHoursSpecification: hourEntries.map(({ day, time }) => {
+    const [from, to] = time.split('–').map((part) => part.trim());
+    return {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: `https://schema.org/${dayCodes[day] ?? day}`,
+      opens: from.replace('.', ':'),
+      closes: to.replace('.', ':'),
+    };
+  }),
+  availableService: [
+    { '@type': 'MedicalProcedure', name: 'Fog- és szájbetegségek szakorvosi ellátás' },
+    { '@type': 'MedicalProcedure', name: 'Panoráma röntgen' },
+    { '@type': 'MedicalProcedure', name: 'Fogpótlás és beültetés' },
+    { '@type': 'MedicalProcedure', name: 'Gyermekfogászat' },
+  ],
+  medicalSpecialty: 'Dentistry',
+  employee: team.items.map((doctor) => ({
+    '@type': 'Physician',
+    name: doctor.name,
+    jobTitle: doctor.role,
+    telephone: doctor.phoneHref.replace('tel:', ''),
+  })),
+  openingHours: hourEntries
+    .map(({ day, time }) => `${dayCodes[day] ?? day} ${time}`)
+    .join(', '),
+};
+---
+
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3F1D5E" />
+
+    <title>{title}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonical.href} />
+    <meta
+      name="robots"
+      content={indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow'}
+    />
+    <meta name="author" content={`${site.name} Kft`} />
+    <meta name="geo.region" content="HU-BZ" />
+    <meta name="geo.placename" content="Tiszaújváros" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${site.name} ${site.tagline}`} />
+    <meta property="og:locale" content="hu_HU" />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} ${site.tagline} Tiszaújvárosban`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl.href} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(structuredData)}
+    />
+  </head>
+  <body>
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <slot />
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+      );
+      for (const el of document.querySelectorAll('.reveal')) {
+        io.observe(el);
+      }
+    </script>
+  </body>
+</html>

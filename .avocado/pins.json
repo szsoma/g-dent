@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "pins": [
+    {
+      "id": "d9a49c79-65e9-4564-9dc4-2223a0c64c67",
+      "page": "/",
+      "file": "src/components/HoursSection.astro",
+      "path": "1.1.1.1.7",
+      "label": "a.mt-8",
+      "within": {
+        "x": 0.3061294935647714,
+        "y": 0.4973958333333333
+      },
+      "anchor": {
+        "x": 0.11180555555555556,
+        "y": 0.6178247734138973
+      },
+      "device": "desktop",
+      "text": "remove bejelentkezem text",
+      "attachments": [],
+      "state": "done",
+      "turnId": 7,
+      "lastError": null,
+      "createdAt": 1791869893445,
+      "sentAt": 1791872928422,
+      "doneAt": 1791881710418
+    },
+    {
+      "id": "4b59961c-f29c-4e52-ad95-213b6b04ace1",
+      "page": "/",
+      "file": "src/components/ServicesSection.astro",
+      "path": "1.1.1.3",
+      "label": "h2.mt-4",
+      "within": {
+        "x": 0.6547619047619048,
+        "y": 0.8242594075260208
+      },
+      "anchor": {
+        "x": 0.35,
+        "y": 0.24449719464825204
+      },
+      "device": "desktop",
+      "text": "make the h2 and h1 bit bigger",
+      "attachments": [],
+      "state": "done",
+      "turnId": 8,
+      "lastError": null,
+      "createdAt": 1791869921095,
+      "sentAt": 1791872930171,
+      "doneAt": 1791881712494
+    },
+    {
+      "id": "4c7570f9-5b95-4277-ae19-cc77b21dc7e1",
+      "page": "/",
+      "file": "src/components/HoursSection.astro",
+      "path": "1",
+      "label": "section#nyitvatartas",
+      "within": {
+        "x": 0.38819444444444445,
+        "y": 0.07234042553191489
+      },
+      "anchor": {
+        "x": 0.38819444444444445,
+        "y": 0.5619335347432024
+      },
+      "device": "desktop",
+      "text": "make the h2 and h1 bit bigger",
+      "attachments": [],
+      "state": "done",
+      "turnId": 6,
+      "lastError": null,
+      "createdAt": 1791869964845,
+      "sentAt": 1791872926380,
+      "doneAt": 1791881714022
+    },
+    {
+      "id": "044f548f-420e-4010-ae53-be9de422c477",
+      "page": "/",
+      "file": "src/components/HoursSection.astro",
+      "path": "1.1.1.3",
+      "label": "dl.reveal",
+      "within": {
+        "x": 0.23660368768495332,
+        "y": 0.7693977947413062
+      },
+      "anchor": {
+        "x": 0.5916666666666667,
+        "y": 0.2988382099827883
+      },
+      "device": "desktop",
+      "text": "remove the last element’s border bottom",
+      "attachments": [],
+      "state": "done",
+      "turnId": 9,
+      "lastError": null,
+      "createdAt": 1791875469525,
+      "sentAt": 1791875483184,
+      "doneAt": 1791881707451
+    },
+    {
+      "id": "63511676-bd7b-4a47-85ef-1852bac45949",
+      "page": "/",
+      "file": "src/components/ContactSection.astro",
+      "path": "1.3",
+      "label": "div.container-page",
+      "within": {
+        "x": 0.9854651162790697,
+        "y": 0.8632751177394035
+      },
+      "anchor": {
+        "x": 0.9638888888888889,
+        "y": 0.8993115318416524
+      },
+      "device": "desktop",
+      "text": "remove the off grid stroke around the image",
+      "attachments": [],
+      "state": "done",
+      "turnId": 11,
+      "lastError": null,
+      "createdAt": 1791875556121,
+      "sentAt": 1791875569400,
+      "doneAt": 1791881700383
+    }
+  ]
+}

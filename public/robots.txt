@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gdent-khaki.vercel.app/sitemap-index.xml

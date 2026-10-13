@@ -1,0 +1,61 @@
+---
+interface Service {
+  index: string;
+  title: string;
+  items: string[];
+  note?: string;
+}
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  services: Service[];
+}
+
+const { eyebrow, heading, intro, services }: Props = Astro.props;
+---
+
+<section id="szolgaltatasok" class="bg-canvas py-16 md:py-20">
+  <div class="container-page">
+    <div class="reveal max-w-2xl">
+      <p class="eyebrow text-terracotta">{eyebrow}</p>
+      <h2 class="mt-4 font-display text-h2 leading-tight">{heading}</h2>
+      <p class="mt-5 max-w-xl text-body text-muted">{intro}</p>
+    </div>
+
+    <ul class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((service, i) => (
+          <li
+            class="reveal group flex flex-col bg-surface p-8 transition-all duration-500 ease-[var(--ease-soft)] hover:-translate-y-1 hover:bg-raised hover:shadow-lift"
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <span class="font-display text-caption tracking-[0.2em] text-terracotta">
+              {service.index}
+            </span>
+            <h3 class="mt-4 font-display text-[1.375rem] leading-snug">
+              {service.title}
+            </h3>
+            <ul class="mt-5 flex flex-1 flex-col gap-2.5">
+              {service.items.map((item) => (
+                <li class="flex gap-3 text-[0.9375rem] leading-relaxed text-ink/85">
+                  <span
+                    aria-hidden="true"
+                    class="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-sage"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            {service.note ? (
+              <p class="mt-6 border-t border-ink/10 pt-4 text-caption leading-relaxed text-muted">
+                {service.note}
+              </p>
+            ) : null}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
