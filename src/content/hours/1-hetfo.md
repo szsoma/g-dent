@@ -1,5 +1,5 @@
 ---
-day: Hétfő
-time: 13.00 – 19.00
+day: Hetfo
+time: 13.00 – 20.00
 order: 1
 ---
