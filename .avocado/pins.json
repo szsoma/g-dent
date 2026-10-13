@@ -120,6 +120,30 @@
       "createdAt": 1791875556121,
       "sentAt": 1791875569400,
       "doneAt": 1791881700383
+    },
+    {
+      "id": "71d06745-0cab-4b85-9612-5abc7fa1e822",
+      "page": "/",
+      "file": "src/components/AnnouncementBar.astro",
+      "path": "1",
+      "label": "expression",
+      "within": {
+        "x": 0.6784722222222223,
+        "y": 0.4925181701581873
+      },
+      "anchor": {
+        "x": 0.6784722222222223,
+        "y": 0.0039020160416215043
+      },
+      "device": "desktop",
+      "text": "make this color to light purple",
+      "attachments": [],
+      "state": "inProgress",
+      "turnId": 1,
+      "lastError": null,
+      "createdAt": 1791892086211,
+      "sentAt": 1791892111379,
+      "doneAt": null
     }
   ]
 }
