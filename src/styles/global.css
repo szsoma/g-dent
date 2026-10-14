@@ -139,9 +139,20 @@ html.js .reveal {
   will-change: opacity, transform;
 }
 
+/* Once revealed, the element's own hover transitions take over (the service
+   cards lift and change background). The reveal keeps its stagger delay; the
+   hover properties get none, so they respond at once. Utilities cannot do
+   this: the reveal rule above is unlayered and would replace them. */
 html.js .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+  transition:
+    opacity 0.7s var(--ease-soft),
+    transform 0.7s var(--ease-soft),
+    translate 0.5s var(--ease-soft),
+    background-color 0.5s var(--ease-soft),
+    box-shadow 0.5s var(--ease-soft);
+  transition-delay: var(--reveal-delay, 0ms), var(--reveal-delay, 0ms), 0ms, 0ms, 0ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -151,6 +162,9 @@ html.js .reveal.is-visible {
   html.js .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+  html.js .reveal.is-visible {
     transition: none;
   }
 }

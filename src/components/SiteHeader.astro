@@ -12,6 +12,12 @@ interface Announcement {
   text: string;
 }
 
+interface LanguageSwitch {
+  label: string;
+  href: string;
+  hreflang: string;
+}
+
 interface Props {
   text: string;
   tagline: string;
@@ -19,7 +25,12 @@ interface Props {
   phoneLabel: string;
   phoneHref: string;
   menuAriaLabel: string;
+  menuCloseAriaLabel: string;
   menuCtaSuffix: string;
+  navAriaLabel: string;
+  mobileNavAriaLabel: string;
+  homeAriaLabel: string;
+  languageSwitch: LanguageSwitch;
   announcement: Announcement;
 }
 
@@ -30,7 +41,12 @@ const {
   phoneLabel,
   phoneHref,
   menuAriaLabel,
+  menuCloseAriaLabel,
   menuCtaSuffix,
+  navAriaLabel,
+  mobileNavAriaLabel,
+  homeAriaLabel,
+  languageSwitch,
   announcement,
 }: Props = Astro.props;
 ---
@@ -43,9 +59,9 @@ const {
   <AnnouncementBar visible={announcement.visible} text={announcement.text} />
 
   <div class="container-page flex h-[71px] items-center justify-between gap-4">
-    <Wordmark {text} {tagline} />
+    <Wordmark {text} {tagline} homeLabel={homeAriaLabel} />
 
-    <nav class="hidden items-center gap-7 lg:flex" aria-label="Főmenü">
+    <nav class="hidden items-center gap-7 lg:flex" aria-label={navAriaLabel}>
       {
         navItems.map((item) => (
           <a
@@ -60,6 +76,13 @@ const {
     </nav>
 
     <div class="flex items-center gap-3">
+      <a
+        href={languageSwitch.href}
+        hreflang={languageSwitch.hreflang}
+        class="text-[0.9375rem] font-medium tracking-wide text-ink transition-colors duration-300 hover:text-primary"
+      >
+        {languageSwitch.label}
+      </a>
       <a
         href={phoneHref}
         class="hidden items-center gap-2 rounded-xs bg-primary px-4 py-2.5 text-[0.9375rem] text-on-primary transition-colors duration-300 hover:bg-primary/80 lg:inline-flex"
@@ -78,6 +101,8 @@ const {
         type="button"
         class="grid size-10 place-items-center rounded-full bg-canvas/90 text-ink shadow-lift transition-transform duration-300 hover:scale-105 lg:hidden"
         aria-label={menuAriaLabel}
+        data-label-open={menuAriaLabel}
+        data-label-close={menuCloseAriaLabel}
         aria-expanded="false"
         aria-controls="mobile-menu"
         data-menu-toggle
@@ -96,7 +121,7 @@ const {
     class="hidden border-t border-ink/10 bg-canvas lg:hidden"
     data-menu-panel
   >
-    <nav class="container-page flex flex-col gap-1 py-4" aria-label="Mobilmenü">
+    <nav class="container-page flex flex-col gap-1 py-4" aria-label={mobileNavAriaLabel}>
       {
         navItems.map((item) => (
           <a
@@ -131,7 +156,7 @@ const {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute(
       'aria-label',
-      open ? 'Menü bezárása' : 'Menü megnyitása',
+      (open ? toggle.getAttribute('data-label-close') : toggle.getAttribute('data-label-open')) ?? '',
     );
     if (bars.length === 3) {
       const [top, mid, bottom] = bars as HTMLElement[];

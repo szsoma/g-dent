@@ -28,7 +28,7 @@ const { eyebrow, heading, intro, services }: Props = Astro.props;
       {
         services.map((service, i) => (
           <li
-            class="reveal group flex flex-col bg-surface p-8 transition-all duration-500 ease-[var(--ease-soft)] hover:-translate-y-1 hover:bg-raised hover:shadow-lift"
+            class="reveal group flex flex-col bg-surface p-8 hover:-translate-y-1 hover:bg-raised hover:shadow-lift"
             style={`--reveal-delay: ${i * 70}ms`}
           >
             <span class="font-display text-caption tracking-[0.2em] text-terracotta">

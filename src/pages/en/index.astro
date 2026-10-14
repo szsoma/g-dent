@@ -1,0 +1,145 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import Hero from '../../components/Hero.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import TeamSection from '../../components/TeamSection.astro';
+import HoursSection from '../../components/HoursSection.astro';
+import InsuranceSection from '../../components/InsuranceSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { getCollection } from 'astro:content';
+import {
+  site,
+  navItems,
+  header,
+  hero,
+  services,
+  team,
+  hours,
+  insurance,
+  contact,
+  footer,
+  dayNames,
+} from '../../data/en';
+import { summarizeHours } from '../../data/site';
+import varakozo1 from '../../assets/varakozo-1.jpg';
+import varakozo2 from '../../assets/varakozo-2.jpg';
+import rendelo from '../../assets/rendelo.jpg';
+import epulet from '../../assets/epulet.jpg';
+
+// The hours collection stores Hungarian day names and HH.MM times; show them
+// as English day names and HH:MM.
+const hourEntries = (await getCollection('hours'))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order)
+  .map(({ day, time, order }) => ({
+    day: dayNames[day] ?? day,
+    time: time.replace(/\./g, ':'),
+    order,
+  }));
+
+const [announcementEntry] = await getCollection('announcements');
+const announcement = {
+  visible: announcementEntry?.data.visible ?? false,
+  text: announcementEntry?.data.textEn ?? announcementEntry?.data.text ?? '',
+};
+---
+
+<Base
+  lang="en"
+  title={`${site.name} ${site.tagline} — Tiszaújváros`}
+  description="G-Dent private dental practice in Tiszaújváros: painless treatment, a family atmosphere, panoramic X-ray, dental prosthetics and pediatric dentistry in one place."
+>
+  <SiteHeader
+    text={site.name}
+    tagline={site.tagline}
+    {navItems}
+    phoneLabel={site.phoneLabel}
+    phoneHref={site.phoneHref}
+    menuAriaLabel={header.menuAriaLabel}
+    menuCloseAriaLabel={header.menuCloseAriaLabel}
+    menuCtaSuffix={header.menuCtaLabel}
+    navAriaLabel={header.navAriaLabel}
+    mobileNavAriaLabel={header.mobileNavAriaLabel}
+    homeAriaLabel={header.homeAriaLabel}
+    languageSwitch={header.languageSwitch}
+    {announcement}
+  />
+  <main>
+    <Hero
+      heroImage={varakozo1}
+      heroAlt="G-Dent dental clinic waiting room in Tiszaújváros"
+      sideImage={varakozo2}
+      sideImageAlt="The second part of the clinic waiting room, with seating"
+      eyebrow={hero.eyebrow}
+      headingLead={hero.headingLead}
+      headingAccent={hero.headingAccent}
+      headingEnd={hero.headingEnd}
+      lead={hero.lead}
+      primaryCtaLabel={hero.primaryCtaLabel}
+      primaryCtaHref={site.phoneHref}
+      secondaryCtaLabel={hero.secondaryCtaLabel}
+      facts={hero.facts}
+      namePlate={hero.namePlate}
+      imageSideCaption={hero.imageSideCaption}
+    />
+
+    <HoursSection
+      eyebrow={hours.eyebrow}
+      heading={hours.heading}
+      intro={hours.intro}
+      phoneLabel={site.phoneLabel}
+      phoneHref={site.phoneHref}
+      hours={hourEntries}
+      addressNote={hours.addressNote}
+    /><ServicesSection
+      eyebrow={services.eyebrow}
+      heading={services.heading}
+      intro={services.intro}
+      services={services.items}
+    />
+    <TeamSection
+      teamImage={rendelo}
+      teamImageAlt="G-Dent treatment room with a dental unit in Tiszaújváros"
+      eyebrow={team.eyebrow}
+      heading={team.heading}
+      imageCaption={team.imageCaption}
+      doctors={team.items}
+    />
+    <InsuranceSection
+      eyebrow={insurance.eyebrow}
+      heading={insurance.heading}
+      intro={insurance.intro}
+      funds={insurance.items}
+    />
+    <ContactSection
+      exteriorImage={epulet}
+      exteriorImageAlt="The G-Dent clinic entrance at 30 Tompa Mihály Street"
+      eyebrow={contact.eyebrow}
+      heading={contact.heading}
+      intro={contact.intro}
+      phoneLabel={site.phoneLabel}
+      phoneHref={site.phoneHref}
+      emailLabel={site.email}
+      emailHref={site.emailHref}
+      addressLabel={contact.addressLabel}
+      addressValue={site.address}
+      hoursLabel={contact.hoursLabel}
+      hoursValue={summarizeHours(hourEntries)}
+      imageCaption={contact.imageCaption}
+    />
+    <SiteFooter
+      text={site.name}
+      tagline={site.tagline}
+      description={footer.description}
+      sitemapTitle={footer.sitemapTitle}
+      contactTitle={footer.contactTitle}
+      navLinks={navItems}
+      contactLinks={footer.contactLinks}
+      copyright={footer.copyright}
+      contactLine={`${site.address} · ${site.phoneLabel}`}
+      homeLabel={header.homeAriaLabel}
+    />
+  </main>
+</Base>

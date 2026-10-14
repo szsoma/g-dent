@@ -49,7 +49,12 @@ const announcement = {
     phoneLabel={site.phoneLabel}
     phoneHref={site.phoneHref}
     menuAriaLabel={header.menuAriaLabel}
+    menuCloseAriaLabel={header.menuCloseAriaLabel}
     menuCtaSuffix={header.menuCtaLabel}
+    navAriaLabel={header.navAriaLabel}
+    mobileNavAriaLabel={header.mobileNavAriaLabel}
+    homeAriaLabel={header.homeAriaLabel}
+    languageSwitch={header.languageSwitch}
     {announcement}
   />
   <main>
@@ -96,7 +101,7 @@ const announcement = {
     <InsuranceSection
       eyebrow={insurance.eyebrow}
       heading={insurance.heading}
-      intro={insurance.intro}
+      intro="Szerződéses pénztárainkkal közvetlenül elszámolhatunk."
       funds={insurance.items}
     />
     <ContactSection
@@ -125,6 +130,7 @@ const announcement = {
       contactLinks={footer.contactLinks}
       copyright={footer.copyright}
       contactLine={`${site.address} · ${site.phoneLabel}`}
+      homeLabel={header.homeAriaLabel}
     />
   </main>
 </Base>

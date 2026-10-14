@@ -21,6 +21,7 @@ interface Props {
   contactLinks: FooterLink[];
   copyright: string;
   contactLine: string;
+  homeLabel: string;
 }
 
 const {
@@ -33,6 +34,7 @@ const {
   contactLinks,
   copyright,
   contactLine,
+  homeLabel,
 }: Props = Astro.props;
 
 const columns: FooterColumn[] = [
@@ -45,7 +47,7 @@ const columns: FooterColumn[] = [
   <div class="container-page">
     <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
       <div class="max-w-xs">
-        <Wordmark {text} {tagline} />
+        <Wordmark {text} {tagline} {homeLabel} />
         <p class="mt-4 text-caption leading-relaxed text-muted">{description}</p>
       </div>
 

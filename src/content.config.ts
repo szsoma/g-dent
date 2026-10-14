@@ -24,6 +24,7 @@ const announcements = defineCollection({
   schema: z.object({
     visible: z.boolean().default(false),
     text: z.string(),
+    textEn: z.string().optional(),
   }),
 });
 

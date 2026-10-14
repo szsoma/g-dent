@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
-import { site, team } from '../data/site';
+import * as hu from '../data/site';
+import * as en from '../data/en';
 
 interface Props {
   title: string;
@@ -10,9 +11,17 @@ interface Props {
   indexable?: boolean;
   /** Set on pages whose social preview should use a different image. */
   ogImage?: string;
+  /** Picks the copy module for the page's language. */
+  lang?: 'hu' | 'en';
 }
 
-const { title, description, indexable = true, ogImage = '/og.jpg' } = Astro.props;
+const { title, description, indexable = true, ogImage = '/og.jpg', lang = 'hu' } = Astro.props;
+const { site, team } = lang === 'en' ? en : hu;
+
+// Each page lives under one language prefix; the other language is its /en/ twin.
+const localePath = Astro.url.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+const huHref = new URL(localePath, Astro.site).href;
+const enHref = new URL(localePath === '/' ? '/en/' : `/en${localePath}`, Astro.site).href;
 
 // Every page supplies a description; the fallback is the homepage copy so a new
 // page can never ship with an empty <meta name="description">.
@@ -69,12 +78,10 @@ const structuredData = {
       closes: to.replace('.', ':'),
     };
   }),
-  availableService: [
-    { '@type': 'MedicalProcedure', name: 'Fog- és szájbetegségek szakorvosi ellátás' },
-    { '@type': 'MedicalProcedure', name: 'Panoráma röntgen' },
-    { '@type': 'MedicalProcedure', name: 'Fogpótlás és beültetés' },
-    { '@type': 'MedicalProcedure', name: 'Gyermekfogászat' },
-  ],
+  availableService: site.structuredServices.map((name) => ({
+    '@type': 'MedicalProcedure',
+    name,
+  })),
   medicalSpecialty: 'Dentistry',
   employee: team.items.map((doctor) => ({
     '@type': 'Physician',
@@ -89,7 +96,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="hu">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -98,6 +105,9 @@ const structuredData = {
     <title>{title}</title>
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical.href} />
+    <link rel="alternate" hreflang="hu" href={huHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={huHref} />
     <meta
       name="robots"
       content={indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow'}
@@ -108,14 +118,14 @@ const structuredData = {
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={`${site.name} ${site.tagline}`} />
-    <meta property="og:locale" content="hu_HU" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'hu_HU'} />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content={ogImageUrl.href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${site.name} ${site.tagline} Tiszaújvárosban`} />
+    <meta property="og:image:alt" content={site.ogImageAlt} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />

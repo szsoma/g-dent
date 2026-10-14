@@ -7,6 +7,13 @@ export const site = {
   emailHref: 'mailto:gdent@t-email.hu',
   address: '3580 Tiszaújváros, Tompa Mihály út 30.',
   addressShort: 'Tiszaújváros · Tompa Mihály út 30.',
+  ogImageAlt: 'G-Dent fogorvosi magánrendelő Tiszaújvárosban',
+  structuredServices: [
+    'Fog- és szájbetegségek szakorvosi ellátás',
+    'Panoráma röntgen',
+    'Fogpótlás és beültetés',
+    'Gyermekfogászat',
+  ],
 } as const;
 
 export const navItems = [
@@ -18,7 +25,12 @@ export const navItems = [
 
 export const header = {
   menuAriaLabel: 'Menü megnyitása',
+  menuCloseAriaLabel: 'Menü bezárása',
   menuCtaLabel: 'időpontot foglalok',
+  navAriaLabel: 'Főmenü',
+  mobileNavAriaLabel: 'Mobilmenü',
+  homeAriaLabel: 'vissza a lap tetejére',
+  languageSwitch: { label: 'EN', href: '/en/', hreflang: 'en' },
 };
 
 export const hero = {

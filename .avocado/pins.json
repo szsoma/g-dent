@@ -144,6 +144,30 @@
       "createdAt": 1791892086211,
       "sentAt": 1791892111379,
       "doneAt": null
+    },
+    {
+      "id": "012693fe-e256-4686-b0b3-a5d013a29034",
+      "page": "/",
+      "file": "src/components/ServicesSection.astro",
+      "path": "1.1.3.1",
+      "label": "expression",
+      "within": {
+        "x": 0.5236280487804879,
+        "y": 0.06816357116094846
+      },
+      "anchor": {
+        "x": 0.5215277777777778,
+        "y": 0.41209624972902664
+      },
+      "device": "desktop",
+      "text": "add a subtle css transition for the hover effect",
+      "attachments": [],
+      "state": "inProgress",
+      "turnId": 4,
+      "lastError": null,
+      "createdAt": 1791962439313,
+      "sentAt": 1791963323245,
+      "doneAt": null
     }
   ]
 }
